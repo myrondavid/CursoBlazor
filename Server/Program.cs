@@ -32,9 +32,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI(swaggerUIOptions =>
+{
+    swaggerUIOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "CursoBlazor API");
+    swaggerUIOptions.RoutePrefix = string.Empty;
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
